@@ -31,8 +31,8 @@ public class OrderServiceImpl implements OrderService {
             }
             builder.append(order.getTotal());
             builder.append("      ");
-            builder.append(PrintUtil.addDotInteger(
-                    order.getTotalAmount().doubleValue()));
+            builder.append(PrintUtil.addDotNumber(
+                    order.getTotalAmount()));
             builder.append("\n");
         }
         builder.append("------------------------------+\n");
@@ -42,9 +42,9 @@ public class OrderServiceImpl implements OrderService {
         builder.append(OrderUtil.countTotalOrder(allOrder));
         builder.append("      ");
 
-        builder.append(PrintUtil.addDotInteger(
-                OrderUtil.countTotalPrice(allOrder).doubleValue()
-        ));
+        builder.append(PrintUtil.addDotNumber(
+                OrderUtil.countTotalPrice(allOrder)
+                ));
 
         return builder.toString();
     }

@@ -4,8 +4,8 @@ public class PrintUtil {
 
     private PrintUtil() {}
 
-    public static String addDotInteger(Double num) {
-        String numString = Double.toString(num);
+    public static String addDotNumber(Long num) {
+        String numString = Long.toString(num);
         int length = numString.length();
 
         StringBuilder formatted = new StringBuilder();
