@@ -25,7 +25,7 @@ public class App {
 
         MenuView menuView = new MenuView(menuService, orderService);
 
-        CSVImporter.csvImport(menuService, "src/main/resources/menu.csv");
+        CSVImporter.csvImport(menuService, "/menu.csv");
 
         menuView.showMenu();
 
