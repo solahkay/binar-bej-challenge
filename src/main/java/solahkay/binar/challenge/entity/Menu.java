@@ -1,7 +1,5 @@
 package solahkay.binar.challenge.entity;
 
-import java.util.Objects;
-
 public class Menu {
 
     private Long id;
