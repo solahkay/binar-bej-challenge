@@ -25,26 +25,28 @@ public class OrderServiceImpl implements OrderService {
         for (Order order : allOrder.values()) {
             String itemName = order.getMenu().getItemName();
             builder.append(itemName);
-            // 15 character before quantity, add the rest character left with space
-            for (int i = 1; i <= 15 - itemName.length(); i++) {
+            // 13 character before quantity, add the rest character left with space
+            for (int i = 1; i <= 13 - itemName.length(); i++) {
                 builder.append(" ");
             }
-            builder.append(order.getTotal());
+            String totalFormatted = String.format("%7d", order.getTotal());
+            builder.append(totalFormatted);
             builder.append("      ");
             builder.append(PrintUtil.addDotNumber(
                     order.getTotalAmount()));
             builder.append("\n");
         }
-        builder.append("------------------------------+\n");
+        builder.append("------------------------------------+\n");
 
         builder.append("Total");
-        builder.append("          ");
-        builder.append(OrderUtil.countTotalOrder(allOrder));
+        String allOrderFormatted = String.format("%15d", OrderUtil.countTotalOrder(
+                allOrder));
+        builder.append(allOrderFormatted);
         builder.append("      ");
 
         builder.append(PrintUtil.addDotNumber(
                 OrderUtil.countTotalPrice(allOrder)
-                ));
+        ));
 
         return builder.toString();
     }
