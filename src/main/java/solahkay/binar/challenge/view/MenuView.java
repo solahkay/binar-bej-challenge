@@ -5,6 +5,7 @@ import solahkay.binar.challenge.service.MenuService;
 import solahkay.binar.challenge.service.OrderService;
 import solahkay.binar.challenge.util.InputUtil;
 import solahkay.binar.challenge.util.ParsingUtil;
+import solahkay.binar.challenge.util.ReceiptUtil;
 
 public class MenuView {
 
@@ -94,7 +95,7 @@ public class MenuView {
         String input = InputUtil.input("=>").trim();
 
         if (input.equals("1")) {
-            showReceipt();
+            showReceipt(orderService.orderList());
         } else if (input.equals("2")) {
             // back to menu
         } else if (input.equals("0")) {
@@ -106,9 +107,11 @@ public class MenuView {
         }
     }
 
-    public void showReceipt() {
-        // code
-        System.out.println("ini receipt");
+    public void showReceipt(String orderList) {
+        String receipt = ReceiptUtil.createReceipt(orderList);
+        System.out.println(receipt);
+        ReceiptUtil.writeReceiptToTxtFile(receipt);
+
         System.exit(0);
     }
 
