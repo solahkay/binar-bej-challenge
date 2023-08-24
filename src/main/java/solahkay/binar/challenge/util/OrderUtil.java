@@ -6,7 +6,8 @@ import java.util.Map;
 
 public class OrderUtil {
 
-    private OrderUtil() {}
+    private OrderUtil() {
+    }
 
     public static Integer countTotalOrder(Map<Long, Order> orders) {
         Integer count = 0;

@@ -4,7 +4,7 @@ import solahkay.binar.challenge.entity.Menu;
 
 public interface MenuService {
 
-    void showMenu();
+    void showAllMenu();
 
     boolean addMenu(String itemName, Integer price);
 

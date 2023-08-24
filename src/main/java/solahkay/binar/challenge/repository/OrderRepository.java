@@ -1,6 +1,5 @@
 package solahkay.binar.challenge.repository;
 
-import solahkay.binar.challenge.entity.Menu;
 import solahkay.binar.challenge.entity.Order;
 
 import java.util.Map;

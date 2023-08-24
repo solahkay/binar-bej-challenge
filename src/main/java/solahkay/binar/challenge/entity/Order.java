@@ -3,7 +3,6 @@ package solahkay.binar.challenge.entity;
 public class Order {
 
     private Menu menu;
-
     private Integer total;
     private Long totalAmount;
 

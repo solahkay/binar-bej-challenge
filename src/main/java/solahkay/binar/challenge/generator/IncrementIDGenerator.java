@@ -4,7 +4,8 @@ public class IncrementIDGenerator {
 
     private static Long currentID = 1L;
 
-    private IncrementIDGenerator() {}
+    private IncrementIDGenerator() {
+    }
 
     public static Long generate() {
         return currentID++;

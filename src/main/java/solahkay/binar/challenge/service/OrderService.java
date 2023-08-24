@@ -4,7 +4,7 @@ import solahkay.binar.challenge.entity.Menu;
 
 public interface OrderService {
 
-    String orderList();
+    String organizeOrder();
 
     boolean addOrUpdateOrder(Menu menu, Integer totalOrder);
 

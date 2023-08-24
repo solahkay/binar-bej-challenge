@@ -18,27 +18,21 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public String orderList() {
+    public String organizeOrder() {
         StringBuilder builder = new StringBuilder();
         Map<Long, Order> allOrder = orderRepository.findAll();
 
-        for (Order order : allOrder.values()) {
-            String itemName = order.getMenu().getItemName();
-            builder.append(itemName);
-            // 13 character before quantity, add the rest character left with space
-            for (int i = 1; i <= 13 - itemName.length(); i++) {
-                builder.append(" ");
-            }
-            String totalFormatted = String.format("%7d", order.getTotal());
-            builder.append(totalFormatted);
-            builder.append("      ");
-            builder.append(PrintUtil.addDotNumber(
-                    order.getTotalAmount()));
-            builder.append("\n");
-        }
+        formatOrders(builder, allOrder);
+        formatTotalOrders(builder, allOrder);
+
+        return builder.toString();
+    }
+
+    private void formatTotalOrders(StringBuilder builder, Map<Long, Order> allOrder) {
         builder.append("------------------------------------+\n");
 
         builder.append("Total");
+        // 15 character for total order include space
         String allOrderFormatted = String.format("%15d", OrderUtil.countTotalOrder(
                 allOrder));
         builder.append(allOrderFormatted);
@@ -47,8 +41,24 @@ public class OrderServiceImpl implements OrderService {
         builder.append(PrintUtil.addDotNumber(
                 OrderUtil.countTotalPrice(allOrder)
         ));
+    }
 
-        return builder.toString();
+    private void formatOrders(StringBuilder builder, Map<Long, Order> allOrder) {
+        for (Order order : allOrder.values()) {
+            String itemName = order.getMenu().getItemName();
+            builder.append(itemName);
+            // 13 character before total quantity, add the rest character left with space
+            for (int i = 1; i <= 13 - itemName.length(); i++) {
+                builder.append(" ");
+            }
+            // 7 character for total quantity include space
+            String totalFormatted = String.format("%7d", order.getTotal());
+            builder.append(totalFormatted);
+            builder.append("      ");
+            builder.append(PrintUtil.addDotNumber(
+                    order.getTotalAmount()));
+            builder.append("\n");
+        }
     }
 
     @Override
@@ -57,6 +67,7 @@ public class OrderServiceImpl implements OrderService {
         Integer currentTotalOrder = totalOrder;
 
         for (Map.Entry<Long, Order> entry : allOrder.entrySet()) {
+            // if totalOrder exist then sum previous totalOrder and new totalOrder
             if (Objects.equals(entry.getKey(), menu.getId())) {
                 currentTotalOrder += entry.getValue().getTotal();
             }
@@ -65,4 +76,5 @@ public class OrderServiceImpl implements OrderService {
         Order order = new Order(menu, currentTotalOrder);
         return orderRepository.add(menu.getId(), order);
     }
+
 }

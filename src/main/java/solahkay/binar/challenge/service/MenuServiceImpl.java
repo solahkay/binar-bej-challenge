@@ -16,7 +16,7 @@ public class MenuServiceImpl implements MenuService {
     }
 
     @Override
-    public void showMenu() {
+    public void showAllMenu() {
         List<Menu> model = menuRepository.findAll();
         model.forEach(menu -> {
             Long no = menu.getId();
@@ -34,33 +34,34 @@ public class MenuServiceImpl implements MenuService {
             System.out.print(price);
             System.out.println();
         });
-
     }
 
     @Override
     public boolean addMenu(String itemName, Integer price) {
-        List<Menu> menuList = menuRepository.findAll();
+        List<Menu> menus = menuRepository.findAll();
         // check menu if exist
-        for (Menu menu : menuList) {
+        for (Menu menu : menus) {
             if (itemName.equalsIgnoreCase(menu.getItemName())) {
                 return false;
             }
         }
+
         Long id = IncrementIDGenerator.generate();
-        Menu newMenu = new Menu(id, itemName, price);
-        return menuRepository.insert(newMenu);
+        Menu menu = new Menu(id, itemName, price);
+        return menuRepository.insert(menu);
     }
 
     @Override
     public Menu getMenuById(String id) {
         boolean isNumber = ParsingUtil.isNumber(id);
-        Long idParsed = null;
+        Long parsedId = null;
         if (isNumber) {
-            idParsed = Long.parseLong(id);
+            parsedId = Long.parseLong(id);
         } else {
             return null;
         }
 
-        return menuRepository.getById(idParsed).orElse(null);
+        return menuRepository.getById(parsedId).orElse(null);
     }
+
 }

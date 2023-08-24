@@ -16,7 +16,6 @@ import java.io.IOException;
 public class App {
 
     public static void main(String[] args) throws IOException {
-
         MenuRepository menuRepository = new MenuRepositoryImpl();
         OrderRepository orderRepository = new OrderRepositoryImpl();
 
@@ -28,7 +27,6 @@ public class App {
         CSVImporter.csvImport(menuService, "/menu.csv");
 
         menuView.showMenu();
-
     }
 
 }

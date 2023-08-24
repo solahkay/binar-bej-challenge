@@ -6,7 +6,8 @@ public class Menu {
     private String itemName;
     private Integer price;
 
-    public Menu() {}
+    public Menu() {
+    }
 
     public Menu(Long id, String itemName, Integer price) {
         this.id = id;

@@ -2,7 +2,8 @@ package solahkay.binar.challenge.util;
 
 public class PrintUtil {
 
-    private PrintUtil() {}
+    private PrintUtil() {
+    }
 
     public static String addDotNumber(Long num) {
         String numString = Long.toString(num);

@@ -10,7 +10,8 @@ import java.io.InputStreamReader;
 
 public class CSVImporter {
 
-    private CSVImporter() {}
+    private CSVImporter() {
+    }
 
     public static void csvImport(MenuService menuService, String path) throws IOException {
         String csvDelimiter = ";";

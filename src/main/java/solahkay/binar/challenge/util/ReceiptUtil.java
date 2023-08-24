@@ -7,7 +7,8 @@ import java.nio.file.Paths;
 
 public class ReceiptUtil {
 
-    private ReceiptUtil() {}
+    private ReceiptUtil() {
+    }
 
     public static String createReceipt(String orderList) {
         String wrapper = "==========================";

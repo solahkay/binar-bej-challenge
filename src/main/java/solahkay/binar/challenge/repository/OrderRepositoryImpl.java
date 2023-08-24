@@ -12,7 +12,7 @@ public class OrderRepositoryImpl implements OrderRepository {
 
     @Override
     public Map<Long, Order> findAll() {
-        return  orders;
+        return orders;
     }
 
     @Override
@@ -22,7 +22,8 @@ public class OrderRepositoryImpl implements OrderRepository {
 
     @Override
     public boolean add(Long id, Order order) {
-        Order temp = orders.put(id, order);
-        return temp != null;
+        Order previousOrder = orders.put(id, order);
+        return previousOrder == null;
     }
+
 }
