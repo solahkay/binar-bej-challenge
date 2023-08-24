@@ -77,4 +77,4 @@ java -jar target/binar-bej-challenge-1.0-SNAPSHOT.jar
 
 ## 🔗 Workflow
 
-[![flow.png](https://i.postimg.cc/Qt26kfZy/flow.png)](https://postimg.cc/nj1YnYz4)
+[![flow.png](https://i.postimg.cc/1trHwsMf/flow.png)](https://postimg.cc/R6qKzrkB)
