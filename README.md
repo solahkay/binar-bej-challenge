@@ -77,12 +77,4 @@ java -jar target/binar-bej-challenge-1.0-SNAPSHOT.jar
 
 ## 🔗 Workflow
 
-:::mermaid
-graph LR
-    A[View] --> B[Service]
-    B --> C[Repository]
-    C --> D[Entity]
-    G[Dataimport] --> B
-    H[Generator] --> B
-    I[App.java] --> A
-:::
+[![flow.png](https://i.postimg.cc/Qt26kfZy/flow.png)](https://postimg.cc/nj1YnYz4)
