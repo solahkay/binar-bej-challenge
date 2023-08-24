@@ -79,6 +79,7 @@ public class MenuView {
             // back to main menu
         } else {
             printNoOptions();
+            System.out.println();
             showQuantityConfirm(menu);
         }
     }
