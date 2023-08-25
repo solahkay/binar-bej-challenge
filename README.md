@@ -105,7 +105,7 @@ Es Campur;5000
 
 The dataimport class will import the menu from `menu.csv` and the service class will validate whether the menu already exists with the same name. If true, then skip adding.
 
-The `receipt.txt` file is created in the target folder or the folder where you run the Java `.jar` file after successfully placing the order.
+The `receipt.txt` file is created in the root project or the folder where you run the Java `.jar` file after successfully placing the order.
 
 ```
 ==========================
