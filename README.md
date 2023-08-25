@@ -77,7 +77,15 @@ java -jar target/binar-bej-challenge-1.0-SNAPSHOT.jar
 
 ## 🔗 Workflow
 
-[![flow.png](https://i.postimg.cc/1trHwsMf/flow.png)](https://postimg.cc/R6qKzrkB)
+```mermaid
+graph RL
+    A[View] --> B[Service]
+    B --> C[Repository]
+    C --> D[Entity]
+    G[Dataimport] --> B
+    H[Generator] --> B
+    I[App.java] --> A
+```
 
 **CSV format**
 ```
