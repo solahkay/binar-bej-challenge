@@ -13,17 +13,16 @@ public class CSVImporter {
     private CSVImporter() {
     }
 
-    public static void csvImport(MenuService menuService, String path) throws IOException {
+    public static void csvImport(MenuService menuService, String path) {
         String csvDelimiter = ";";
 
         try (InputStream inputStream = App.class.getResourceAsStream(path)) {
             if (inputStream == null) {
-                throw new IOException("Can't access the resources: typo or file not found");
+                throw new IOException("Can't access the menu file: typo or file not found");
             }
 
-            try (BufferedReader reader = new BufferedReader(
-                    new InputStreamReader(inputStream)
-            )) {
+            try (InputStreamReader streamReader = new InputStreamReader(inputStream);
+                 BufferedReader reader = new BufferedReader(streamReader)) {
                 String line;
                 while ((line = reader.readLine()) != null) {
                     // split 2 data (name and price) into array
@@ -32,6 +31,10 @@ public class CSVImporter {
                     menuService.addMenu(data[0], Integer.parseInt(data[1]));
                 }
             }
+        } catch (IOException e) {
+            e.printStackTrace();
+
+            System.exit(1);
         }
     }
 

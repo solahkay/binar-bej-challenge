@@ -11,11 +11,9 @@ import solahkay.binar.challenge.service.OrderService;
 import solahkay.binar.challenge.service.OrderServiceImpl;
 import solahkay.binar.challenge.view.MenuView;
 
-import java.io.IOException;
-
 public class App {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         MenuRepository menuRepository = new MenuRepositoryImpl();
         OrderRepository orderRepository = new OrderRepositoryImpl();
 
