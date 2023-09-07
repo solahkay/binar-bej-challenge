@@ -33,7 +33,7 @@ public class CSVImporter {
             }
         } catch (IOException e) {
             e.printStackTrace();
-
+            // shutdown application because of fatal error
             System.exit(1);
         }
     }
