@@ -55,7 +55,7 @@ public class MenuServiceImpl implements MenuService {
     @Override
     public Menu getMenuById(String id) {
         boolean isNumber = ParsingUtil.isLong(id);
-        Long parsedId = null;
+        long parsedId;
         if (isNumber) {
             parsedId = Long.parseLong(id);
         } else {
