@@ -30,30 +30,8 @@ public class MenuView {
             System.out.println();
 
             String input = InputUtil.input("=>").trim();
-            Menu menu = menuService.getMenuById(input);
-            if (menu != null) {
-                if (input.equals(menu.getId().toString())) {
-                    showQuantityConfirm(menu);
-                }
-            } else {
-                if (input.equals("99")) {
-                    showPaymentConfirm();
-                } else if (input.equals("0")) {
-                    break;
-                } else {
-                    printNoOptions();
-                    System.out.println();
-                }
-            }
+            if (menuInputValidation(input)) break;
         }
-    }
-
-    private void printWrapper() {
-        System.out.println("==========================");
-    }
-
-    private void printNoOptions() {
-        System.out.println("Input tidak ada dalam pilihan, coba lagi!");
     }
 
     public void showQuantityConfirm(Menu menu) {
@@ -63,25 +41,17 @@ public class MenuView {
 
         System.out.print(menu.getItemName());
         // 15 character before quantity, print the rest character left with space
-        for (int i = 1; i <= (15 - menu.getItemName().length()); i++) {
+        int lengthBeforeQty = 15 - menu.getItemName().length();
+        for (int i = 1; i <= lengthBeforeQty; i++) {
             System.out.print(" ");
         }
         System.out.print("| ");
         System.out.println(menu.getPrice());
         System.out.println();
         System.out.println("input 0 untuk kembali");
-        String input = InputUtil.input("qty =>").trim();
 
-        boolean isNumber = ParsingUtil.isNumber(input);
-        if (isNumber) {
-            orderService.addOrUpdateOrder(menu, Integer.parseInt(input));
-        } else if (input.equals("0")) {
-            // back to main menu
-        } else {
-            printNoOptions();
-            System.out.println();
-            showQuantityConfirm(menu);
-        }
+        String input = InputUtil.input("qty =>").trim();
+        quantityInputValidation(menu, input);
     }
 
     public void showPaymentConfirm() {
@@ -98,18 +68,7 @@ public class MenuView {
         System.out.println("0. Keluar aplikasi");
 
         String input = InputUtil.input("=>").trim();
-
-        if (input.equals("1")) {
-            showReceipt(orderService.organizeOrder());
-        } else if (input.equals("2")) {
-            // back to main menu
-        } else if (input.equals("0")) {
-            System.exit(0);
-        } else {
-            printNoOptions();
-            System.out.println();
-            showPaymentConfirm();
-        }
+        paymentInputValidation(input);
     }
 
     public void showReceipt(String orderList) {
@@ -119,6 +78,72 @@ public class MenuView {
         ReceiptUtil.writeReceiptToTxtFile(receipt);
 
         System.exit(0);
+    }
+
+    private void printWrapper() {
+        System.out.println("==========================");
+    }
+
+    private void printNoOptions() {
+        System.out.println("Input tidak ada dalam pilihan, coba lagi!");
+    }
+
+    private boolean menuInputValidation(String input) {
+        Menu menu = menuService.getMenuById(input);
+        if (menu != null) {
+            if (input.equals(menu.getId().toString())) {
+                showQuantityConfirm(menu);
+            }
+        } else {
+            if (input.equals("99")) {
+                showPaymentConfirm();
+            } else if (input.equals("0")) {
+                return true;
+            } else {
+                printNoOptions();
+                System.out.println();
+            }
+        }
+        return false;
+    }
+
+    private void quantityInputValidation(Menu menu, String input) {
+        boolean isNumber = ParsingUtil.isInteger(input);
+        if (isNumber) {
+            int quantity = Integer.parseInt(input);
+            if (quantity > 0) {
+                orderService.addOrUpdateOrder(menu, quantity);
+            } else if (quantity == 0) {
+                // back to menu
+            } else {
+                System.out.println("Minimal 1 jumlah pesanan!");
+                System.out.println();
+                showQuantityConfirm(menu);
+            }
+        } else {
+            System.out.println("Input melebihi batas atau input tidak valid!");
+            System.out.println();
+            showQuantityConfirm(menu);
+        }
+    }
+
+    private void paymentInputValidation(String input) {
+        switch (input) {
+            case "1":
+                showReceipt(orderService.organizeOrder());
+                break;
+            case "2":
+                // back to main menu
+                break;
+            case "0":
+                System.exit(0);
+                break;
+            default:
+                printNoOptions();
+                System.out.println();
+                showPaymentConfirm();
+                break;
+        }
     }
 
 }
