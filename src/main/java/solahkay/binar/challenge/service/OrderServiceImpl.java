@@ -28,6 +28,22 @@ public class OrderServiceImpl implements OrderService {
         return builder.toString();
     }
 
+    @Override
+    public boolean addOrUpdateOrder(Menu menu, Integer totalOrder) {
+        Map<Long, Order> allOrder = orderRepository.findAll();
+        Integer currentTotalOrder = totalOrder;
+
+        for (Map.Entry<Long, Order> entry : allOrder.entrySet()) {
+            // if totalOrder exist then sum previous totalOrder and new totalOrder
+            if (Objects.equals(entry.getKey(), menu.getId())) {
+                currentTotalOrder += entry.getValue().getTotal();
+            }
+        }
+
+        Order order = new Order(menu, currentTotalOrder);
+        return orderRepository.add(menu.getId(), order);
+    }
+
     private void formatTotalOrders(StringBuilder builder, Map<Long, Order> allOrder) {
         builder.append("------------------------------------+\n");
 
@@ -48,7 +64,8 @@ public class OrderServiceImpl implements OrderService {
             String itemName = order.getMenu().getItemName();
             builder.append(itemName);
             // 13 character before total quantity, add the rest character left with space
-            for (int i = 1; i <= 13 - itemName.length(); i++) {
+            int lengthBeforeTotalQty = 13 - itemName.length();
+            for (int i = 1; i <= lengthBeforeTotalQty; i++) {
                 builder.append(" ");
             }
             // 7 character for total quantity include space
@@ -59,22 +76,6 @@ public class OrderServiceImpl implements OrderService {
                     order.getTotalAmount()));
             builder.append("\n");
         }
-    }
-
-    @Override
-    public boolean addOrUpdateOrder(Menu menu, Integer totalOrder) {
-        Map<Long, Order> allOrder = orderRepository.findAll();
-        Integer currentTotalOrder = totalOrder;
-
-        for (Map.Entry<Long, Order> entry : allOrder.entrySet()) {
-            // if totalOrder exist then sum previous totalOrder and new totalOrder
-            if (Objects.equals(entry.getKey(), menu.getId())) {
-                currentTotalOrder += entry.getValue().getTotal();
-            }
-        }
-
-        Order order = new Order(menu, currentTotalOrder);
-        return orderRepository.add(menu.getId(), order);
     }
 
 }
