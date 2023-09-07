@@ -6,6 +6,7 @@ import solahkay.binar.challenge.repository.MenuRepository;
 import solahkay.binar.challenge.util.ParsingUtil;
 
 import java.util.List;
+import java.util.Optional;
 
 public class MenuServiceImpl implements MenuService {
 
@@ -53,16 +54,15 @@ public class MenuServiceImpl implements MenuService {
     }
 
     @Override
-    public Menu getMenuById(String id) {
+    public Optional<Menu> getMenuById(String id) {
         boolean isNumber = ParsingUtil.isLong(id);
         long parsedId;
         if (isNumber) {
             parsedId = Long.parseLong(id);
         } else {
-            return null;
+            return Optional.empty();
         }
-
-        return menuRepository.getById(parsedId).orElse(null);
+        return menuRepository.getById(parsedId);
     }
 
 }

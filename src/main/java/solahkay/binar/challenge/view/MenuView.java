@@ -7,6 +7,8 @@ import solahkay.binar.challenge.util.InputUtil;
 import solahkay.binar.challenge.util.ParsingUtil;
 import solahkay.binar.challenge.util.ReceiptUtil;
 
+import java.util.Optional;
+
 public class MenuView {
 
     private final MenuService menuService;
@@ -89,12 +91,13 @@ public class MenuView {
     }
 
     private boolean menuInputValidation(String input) {
-        Menu menu = menuService.getMenuById(input);
-        if (menu != null) {
+        Optional<Menu> menuOptional = menuService.getMenuById(input);
+        menuOptional.ifPresent(menu -> {
             if (input.equals(menu.getId().toString())) {
                 showQuantityConfirm(menu);
             }
-        } else {
+        });
+        if (!(menuOptional.isPresent())) {
             if (input.equals("99")) {
                 showPaymentConfirm();
             } else if (input.equals("0")) {
