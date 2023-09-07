@@ -40,7 +40,8 @@ public class OrderServiceImpl implements OrderService {
             }
         }
 
-        Order order = new Order(menu, currentTotalOrder);
+        Long totalAmount = ((long) menu.getPrice() * currentTotalOrder);
+        Order order = new Order(menu, currentTotalOrder, totalAmount);
         return orderRepository.add(menu.getId(), order);
     }
 
