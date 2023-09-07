@@ -1,9 +1,9 @@
-# Binar BEJ Challenge 1 
+# Binar BEJ Challenge 2
 
 ![Static Badge](https://img.shields.io/badge/status-uwu-brightgreen)
 
 Independent Study batch 5 Binar Academy - Backend Java
-Challenge 1 assignment - BinarFud
+Challenge 2 assignment - BinarFud
 
 ## Disclaimer
 This is not a real-world project; this project is only for educational purposes.
@@ -37,19 +37,19 @@ change the directory to the root of the project:
 cd binar-bej-challenge
 ```
 
-create branch `challenge_1`:
+create branch `challenge_2`:
 ```git
-git branch challenge_1
+git branch challenge_2
 ```
 
-switch to branch `challenge_1`:
+switch to branch `challenge_2`:
 ```git
-git switch challenge_1
+git switch challenge_2
 ```
 
 don't forget to pull the code in remote repository:
 ```git
-git pull origin challenge_1
+git pull origin challenge_2
 ```
 
 and then the project are ready to use!
@@ -72,7 +72,7 @@ mvn clean package
 
 and then run the `.jar` file in *target* folder:
 ```java
-java -jar target/binar-bej-challenge-1.0-SNAPSHOT.jar
+java -jar target/binar-bej-challenge-2.0-SNAPSHOT.jar
 ```
 
 ## 🔗 Workflow
