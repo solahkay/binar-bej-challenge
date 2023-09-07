@@ -27,7 +27,8 @@ public class MenuServiceImpl implements MenuService {
             System.out.print(no + ". ");
             System.out.print(itemName);
             // 15 character before | printing the rest character left with space
-            for (int i = 1; i <= (15 - itemName.length()); i++) {
+            int lengthBeforeBar = 15 - itemName.length();
+            for (int i = 1; i <= lengthBeforeBar; i++) {
                 System.out.print(" ");
             }
             System.out.print("| ");
@@ -53,7 +54,7 @@ public class MenuServiceImpl implements MenuService {
 
     @Override
     public Menu getMenuById(String id) {
-        boolean isNumber = ParsingUtil.isNumber(id);
+        boolean isNumber = ParsingUtil.isLong(id);
         Long parsedId = null;
         if (isNumber) {
             parsedId = Long.parseLong(id);
