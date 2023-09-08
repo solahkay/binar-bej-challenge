@@ -16,10 +16,8 @@ public class App {
     public static void main(String[] args) {
         MenuRepository menuRepository = new MenuRepositoryImpl();
         OrderRepository orderRepository = new OrderRepositoryImpl();
-
-        OrderService orderService = new OrderServiceImpl(orderRepository);
         MenuService menuService = new MenuServiceImpl(menuRepository);
-
+        OrderService orderService = new OrderServiceImpl(orderRepository);
         MenuView menuView = new MenuView(menuService, orderService);
 
         CSVImporter.csvImport(menuService, "/menu.csv");
