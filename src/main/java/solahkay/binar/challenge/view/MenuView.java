@@ -32,7 +32,9 @@ public class MenuView {
             System.out.println();
 
             String input = InputUtil.input("=>").trim();
-            if (menuInputValidation(input)) break;
+            if (menuInputValidation(input)) {
+                break;
+            }
         }
     }
 
@@ -145,7 +147,6 @@ public class MenuView {
                 printNoOptions();
                 System.out.println();
                 showPaymentConfirm();
-                break;
         }
     }
 
