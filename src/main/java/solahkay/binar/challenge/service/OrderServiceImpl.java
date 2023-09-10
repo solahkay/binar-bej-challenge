@@ -8,6 +8,7 @@ import solahkay.binar.challenge.util.PrintUtil;
 
 import java.util.Map;
 import java.util.Objects;
+import java.util.Set;
 
 public class OrderServiceImpl implements OrderService {
 
@@ -31,14 +32,13 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public boolean addOrUpdateOrder(Menu menu, Integer totalOrder) {
         Map<Long, Order> allOrder = orderRepository.findAll();
-        Integer currentTotalOrder = totalOrder;
-
-        for (Map.Entry<Long, Order> entry : allOrder.entrySet()) {
-            // if totalOrder exist then sum previous totalOrder and new totalOrder
-            if (Objects.equals(entry.getKey(), menu.getId())) {
-                currentTotalOrder += entry.getValue().getTotal();
-            }
-        }
+        Set<Map.Entry<Long, Order>> allOrderEntries = allOrder.entrySet();
+        // if totalOrder exist then sum previous totalOrder and new totalOrder
+        int currentTotalOrder = allOrderEntries.stream()
+                .filter(entry -> Objects.equals(entry.getKey(), menu.getId()))
+                .mapToInt(entry -> entry.getValue().getTotal())
+                .sum();
+        currentTotalOrder += totalOrder;
 
         Long totalAmount = ((long) menu.getPrice() * currentTotalOrder);
         Order order = new Order(menu, currentTotalOrder, totalAmount);

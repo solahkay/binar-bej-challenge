@@ -41,11 +41,11 @@ public class MenuServiceImpl implements MenuService {
     @Override
     public boolean addMenu(String itemName, Integer price) {
         List<Menu> menus = menuRepository.findAll();
-        // check menu if exist
-        for (Menu menu : menus) {
-            if (itemName.equalsIgnoreCase(menu.getItemName())) {
-                return false;
-            }
+
+        boolean isExist = menus.stream()
+                .anyMatch(menu -> itemName.equalsIgnoreCase(menu.getItemName()));
+        if (isExist) {
+            return false;
         }
 
         Long id = IncrementIDGenerator.generate();
