@@ -8,7 +8,7 @@ import java.util.Optional;
 
 public class OrderRepositoryImpl implements OrderRepository {
 
-    Map<Long, Order> orders = new HashMap<>();
+    private final Map<Long, Order> orders = new HashMap<>();
 
     @Override
     public Map<Long, Order> findAll() {
