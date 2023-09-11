@@ -2,6 +2,7 @@ package solahkay.binar.challenge.repository;
 
 import solahkay.binar.challenge.entity.Order;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -12,7 +13,7 @@ public class OrderRepositoryImpl implements OrderRepository {
 
     @Override
     public Map<Long, Order> findAll() {
-        return orders;
+        return Collections.unmodifiableMap(orders);
     }
 
     @Override
