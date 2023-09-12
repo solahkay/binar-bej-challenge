@@ -50,7 +50,11 @@ public class MenuServiceImpl implements MenuService {
 
         Long id = IncrementIDGenerator.generate();
         Menu menu = new Menu(id, itemName, price);
-        return menuRepository.insert(menu);
+        try {
+            return menuRepository.insert(menu);
+        } catch (NullPointerException e) {
+            return false;
+        }
     }
 
     @Override
