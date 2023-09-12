@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Objects;
 
 public class OrderRepositoryImpl implements OrderRepository {
 
@@ -23,6 +24,7 @@ public class OrderRepositoryImpl implements OrderRepository {
 
     @Override
     public boolean add(Long id, Order order) {
+        Objects.requireNonNull(order, "data can't be null");
         Order previousOrder = orders.put(id, order);
         return previousOrder == null;
     }

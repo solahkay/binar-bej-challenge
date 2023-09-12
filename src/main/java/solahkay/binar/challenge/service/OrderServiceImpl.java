@@ -42,7 +42,11 @@ public class OrderServiceImpl implements OrderService {
 
         Long totalAmount = ((long) menu.getPrice() * currentTotalOrder);
         Order order = new Order(menu, currentTotalOrder, totalAmount);
-        return orderRepository.add(menu.getId(), order);
+        try {
+            return orderRepository.add(menu.getId(), order);
+        } catch (NullPointerException e) {
+            return false;
+        }
     }
 
     private void formatTotalOrders(StringBuilder builder, Map<Long, Order> allOrder) {
