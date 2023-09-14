@@ -30,7 +30,8 @@ public class MenuRepositoryImpl implements MenuRepository {
 
     @Override
     public boolean insert(Menu menu) {
-        Objects.requireNonNull(menu, "data can't be null");
+        Objects.requireNonNull(menu.getItemName(), "data can't be null");
+        Objects.requireNonNull(menu.getPrice(), "data can't be null");
         return menus.add(menu);
     }
 
