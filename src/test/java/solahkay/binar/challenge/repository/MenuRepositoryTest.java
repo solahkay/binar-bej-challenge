@@ -79,8 +79,10 @@ class MenuRepositoryTest {
         assertTrue(insert);
         assertEquals(expected, menu);
     }
+
     @Test
     void testInsertFailed_WhenMenuIsNull() {
         assertThrows(NullPointerException.class, () -> menuRepository.insert(null));
     }
+
 }

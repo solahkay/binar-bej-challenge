@@ -15,4 +15,5 @@ class IncrementIDGeneratorTest {
 
         assertEquals(expected, result);
     }
+
 }

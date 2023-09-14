@@ -27,7 +27,6 @@ class CSVImporterTest {
 
         Mockito.verify(menuService, Mockito.times(1))
                 .addMenu("Nasi Goreng", 15000);
-
     }
 
     @Test
@@ -49,4 +48,5 @@ class CSVImporterTest {
         Mockito.verify(menuService, Mockito.times(1))
                 .addMenu("Nasi + Ayam", 18000);
     }
+
 }
