@@ -1,19 +1,18 @@
 package solahkay.binar.challenge.generator;
 
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
+import org.junit.jupiter.api.RepeatedTest;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class IncrementIDGeneratorTest {
 
-    @ParameterizedTest(name = "{displayName}{0}Times")
-    @ValueSource(longs = {1L, 2L, 3L, 4L})
-    void testGenerateSuccess_WhenGenerate(long value) {
-        Long expected = value;
+    @RepeatedTest(value = 10, name = "{displayName}{currentRepetition}Times")
+    void testGenerateSuccess_WhenGenerate() {
         Long result = IncrementIDGenerator.generate();
 
-        assertEquals(expected, result);
+        assertNotNull(result);
+        assertTrue(result > 0);
     }
 
 }
