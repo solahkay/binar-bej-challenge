@@ -43,7 +43,7 @@ public class MenuServiceImpl implements MenuService {
         List<Menu> menus = menuRepository.findAll();
 
         boolean isExist = menus.stream()
-                .anyMatch(menu -> itemName.equalsIgnoreCase(menu.getItemName()));
+                .anyMatch(menu -> menu.getItemName().equalsIgnoreCase(itemName));
         if (isExist) {
             return false;
         }
