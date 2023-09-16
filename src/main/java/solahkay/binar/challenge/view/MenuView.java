@@ -75,15 +75,6 @@ public class MenuView {
         paymentInputValidation(input);
     }
 
-    public void showReceipt(String orderList) {
-        String receipt = ReceiptUtil.createReceipt(orderList);
-        System.out.println(receipt);
-
-        ReceiptUtil.writeReceiptToTxtFile(receipt);
-
-        System.exit(0);
-    }
-
     private void printWrapper() {
         System.out.println("==========================");
     }
@@ -148,6 +139,17 @@ public class MenuView {
                 System.out.println();
                 showPaymentConfirm();
         }
+    }
+
+    private void showReceipt(String orderList) {
+        String receipt = ReceiptUtil.createReceipt(orderList);
+        String path = "receipt.txt";
+
+        System.out.println(receipt);
+
+        ReceiptUtil.writeReceiptToTxtFile(receipt, path);
+
+        System.exit(0);
     }
 
 }

@@ -36,8 +36,8 @@ public class ReceiptUtil {
         );
     }
 
-    public static void writeReceiptToTxtFile(String receipt) {
-        Path path = Paths.get("receipt.txt");
+    public static void writeReceiptToTxtFile(String receipt, String pathName) {
+        Path path = Paths.get(pathName);
         byte[] receiptBytes = receipt.getBytes();
 
         try {
