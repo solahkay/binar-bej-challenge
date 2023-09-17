@@ -72,7 +72,7 @@ mvn clean package
 
 and then run the `.jar` file in *target* folder:
 ```
-java -jar target/binar-bej-challenge-2.0-SNAPSHOT.jar
+java -jar target/binar-bej-challenge-3.0-SNAPSHOT.jar
 ```
 
 ## 🔗 Workflow
