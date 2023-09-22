@@ -54,6 +54,27 @@ git pull origin challenge_3
 
 and then the project are ready to use!
 
+## 🎇 ERD
+
+```mermaid
+    erDiagram
+        MENU ||--|| HAVE : is
+        MENU {
+            Long id PK
+            String itemName
+            Integer price
+        }
+        ORDER ||--o{ HAVE : has
+        ORDER {
+            Integer total
+            Long totalAmount
+            Menu menu
+        }
+        HAVE {
+            Long id PK
+        }
+```
+
 ## 🔧 Usage
 
 [![usage.gif](https://i.postimg.cc/CKbYFg25/usage.gif)](https://postimg.cc/v18Czpbw)
